@@ -48,5 +48,5 @@
           - flask
           - fastapi
         state: present
-        extra_args: --user
+        extra_args: --user --break-system-packages
       become_user: "{{ username }}"
