@@ -1,5 +1,8 @@
 # Ignore mounted volume contents (managed at runtime)
 home/wstevenson/*
 !home/wstevenson/.gitkeep
+!home/wstevenson/.config/
+!home/wstevenson/.config/pip/
+!home/wstevenson/.config/pip/pip.conf
 usr/local/bin/*
 !usr/local/bin/.gitkeep
