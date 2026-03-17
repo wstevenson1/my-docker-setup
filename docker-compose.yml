@@ -1,0 +1,12 @@
+services:
+  ubuntu:
+    build: .
+    container_name: ubuntu-wstevenson
+    hostname: ubuntu
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    user: wstevenson
+    volumes:
+      - ./home/wstevenson:/home/wstevenson
+      - ./usr/local/bin:/usr/local/bin

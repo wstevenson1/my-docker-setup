@@ -1,0 +1,5 @@
+# Ignore mounted volume contents (managed at runtime)
+home/wstevenson/*
+!home/wstevenson/.gitkeep
+usr/local/bin/*
+!usr/local/bin/.gitkeep
