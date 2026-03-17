@@ -38,6 +38,24 @@
         group: "{{ username }}"
         mode: '0644'
 
+    - name: Create .config/pip directory for {{ username }}
+      file:
+        path: "{{ home_dir }}/.config/pip"
+        state: directory
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0755'
+
+    - name: Configure pip to allow system package overrides
+      copy:
+        dest: "{{ home_dir }}/.config/pip/pip.conf"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0644'
+        content: |
+          [global]
+          break-system-packages = true
+
     - name: Install Python packages for {{ username }}
       pip:
         name:
@@ -48,5 +66,5 @@
           - flask
           - fastapi
         state: present
-        extra_args: --user --break-system-packages
+        extra_args: --user
       become_user: "{{ username }}"
