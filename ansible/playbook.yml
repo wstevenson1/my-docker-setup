@@ -4,6 +4,10 @@
   connection: local
   become: true
 
+  vars:
+    username: wstevenson
+    home_dir: /home/wstevenson
+
   tasks:
     - name: Install apt packages
       apt:
@@ -14,4 +18,35 @@
           - netcat-traditional
           - ssh
           - openssh-server
+          - python3-pip
         state: present
+
+    - name: Create .local/bin directory for {{ username }}
+      file:
+        path: "{{ home_dir }}/.local/bin"
+        state: directory
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0755'
+
+    - name: Add .local/bin to PATH in .bashrc
+      lineinfile:
+        path: "{{ home_dir }}/.bashrc"
+        line: 'export PATH="$HOME/.local/bin:$PATH"'
+        create: yes
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0644'
+
+    - name: Install Python packages for {{ username }}
+      pip:
+        name:
+          - PyYAML
+          - shiv
+          - pyoxidizer
+          - requests
+          - flask
+          - fastapi
+        state: present
+        extra_args: --user
+      become_user: "{{ username }}"
