@@ -19,6 +19,8 @@
           - ssh
           - openssh-server
           - python3-pip
+          - iputils-ping
+          - fping
         state: present
 
     - name: Create .local/bin directory for {{ username }}
