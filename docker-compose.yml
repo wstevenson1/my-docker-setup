@@ -1,7 +1,7 @@
 services:
   ubuntu:
     build: .
-    container_name: ubuntu-wstevenson
+    container_name: ubuntu-wstevenson2
     hostname: ubuntu
     stdin_open: true
     tty: true
